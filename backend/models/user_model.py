@@ -1,4 +1,4 @@
-from typing import Optional, List, Dict,Any
+from typing import Optional, List, Dict, Any
 from pydantic import BaseModel, Field, ConfigDict
 
 from pydantic.functional_validators import BeforeValidator
@@ -17,6 +17,7 @@ class Stage(BaseModel):
 
 class Process(BaseModel):
     date: Optional[str] = None
+    skills: Optional[List[str]] = None
     job: Optional[str] = None
     description: Optional[str] = None
     stages: Optional[List[Stage]] = None
@@ -29,6 +30,7 @@ class User(BaseModel):
     birthday: Optional[str] = None
     gender: Optional[str] = None
     email: Optional[str] = None
+    password: Optional[str] = None
     professionalProfile: Optional[str] = None
     address: Optional[str] = None
     city: Optional[str] = None
@@ -50,6 +52,7 @@ class User(BaseModel):
                 "birthday": "1990-01-01",
                 "gender": "Male",
                 "email": "john.doe@example.com",
+                "password": "password123",
                 "professionalProfile": "Software Engineer",
                 "address": "123 Main St",
                 "city": "Anytown",
@@ -73,6 +76,7 @@ class User(BaseModel):
                     {
                         "date": "2024-04-11",
                         "job": "Process Engineer",
+                        "skills": ["Skill 1", "Skill 2"],
                         "description": "Description of the process",
                         "stages": [
                             {
@@ -101,6 +105,7 @@ class UpdateUser(BaseModel):
     birthday: Optional[str] = None
     gender: Optional[str] = None
     email: Optional[str] = None
+    password: Optional[str] = None
     professionalProfile: Optional[str] = None
     address: Optional[str] = None
     city: Optional[str] = None
@@ -121,6 +126,7 @@ class UpdateUser(BaseModel):
                 "birthday": "1990-01-01",
                 "gender": "Male",
                 "email": "john.doe@example.com",
+                "password": "password123",
                 "professionalProfile": "Software Engineer",
                 "address": "123 Main St",
                 "city": "Anytown",
@@ -144,6 +150,7 @@ class UpdateUser(BaseModel):
                     {
                         "date": "2024-04-11",
                         "job": "Process Engineer",
+                        "skills": ["Skill 1", "Skill 2"],
                         "description": "Description of the process",
                         "stages": [
                             {
