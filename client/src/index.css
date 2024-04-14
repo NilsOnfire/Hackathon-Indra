@@ -4,5 +4,7 @@
 
 body {
  background: #202020;
- color:azure
+ color:darkcyan;
+ font-weight: bold;
+ font-family: 'Lucida Sans';
 }

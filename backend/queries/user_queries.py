@@ -1,14 +1,8 @@
-from motor.motor_asyncio import AsyncIOMotorClient
-from models import User
+from database_connection import get_collection
+from models.user_model import User
 from bson import ObjectId
 
-
-#uri = "mongodb+srv://yourMongoDBUser:yourMongoDBPassword@dbindra.wplghu5.mongodb.net/?retryWrites=true&w=majority&appName=dbIndra"
-
-
-client = AsyncIOMotorClient(uri)
-database = client.userDatabase
-collection = database.users
+collection = get_collection('users')
 
 async def get_one_user_id(id):
     user = await collection.find_one({'_id': ObjectId(id)})

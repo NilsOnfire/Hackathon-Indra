@@ -8,6 +8,8 @@ function App(){
    <Routes>
      <Route path="/" element={<HomePage />} />
      <Route path="/user/new" element={<FormPage />} />
+     <Route path="/user/:id" element={<FormPage />} />
+
    </Routes>
    </BrowserRouter>
   )
