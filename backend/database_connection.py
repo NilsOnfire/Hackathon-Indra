@@ -6,5 +6,5 @@ def get_collection(model_name):
 
     client = AsyncIOMotorClient(uri)
     database = client.userDatabase
-    collection = database[model_name]
+    collection = database[model_name,ssl=False]
     return collection
