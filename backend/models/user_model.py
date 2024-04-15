@@ -8,21 +8,6 @@ from typing_extensions import Annotated
 PyObjectId = Annotated[str, BeforeValidator(str)]
 
 
-class Stage(BaseModel):
-    title: str
-    date: str
-    description: str
-    comments: List[str]
-
-
-class Process(BaseModel):
-    date: Optional[str] = None
-    skills: Optional[List[str]] = None
-    job: Optional[str] = None
-    description: Optional[str] = None
-    stages: Optional[List[Stage]] = None
-
-
 class User(BaseModel):
     id: Optional[PyObjectId] = Field(alias="_id", default=None)
     name: Optional[str] = None
@@ -38,8 +23,7 @@ class User(BaseModel):
     postalCode: Optional[str] = None
     linkProfilePhoto: Optional[str] = None
     typeProfile: Optional[str] = None
-    applications: Optional[List[Dict[str, Any]]] = None
-    processes: Optional[List[Process]] = None
+    processes: Optional[List[str]] = None
 
     model_config = ConfigDict(
         populate_by_alias=True,
@@ -59,40 +43,9 @@ class User(BaseModel):
                 "state": "Anystate",
                 "postalCode": "12345",
                 "linkProfilePhoto": "http://example.com/profile.jpg",
-                "typeProfile": "Type A",
-                "applications": [
-                    {
-                        "vacancy": "Software Developer",
-                        "status": "Pending",
-                        "date_applied": "2024-04-11"
-                    },
-                    {
-                        "vacancy": "Data Scientist",
-                        "status": "Accepted",
-                        "date_applied": "2024-04-10"
-                    }
-                ],
+                "typeProfile": "user",
                 "processes": [
-                    {
-                        "date": "2024-04-11",
-                        "job": "Process Engineer",
-                        "skills": ["Skill 1", "Skill 2"],
-                        "description": "Description of the process",
-                        "stages": [
-                            {
-                                "title": "Stage 1",
-                                "date": "2024-04-11",
-                                "description": "Description of stage 1",
-                                "comments": []
-                            },
-                            {
-                                "title": "Stage 2",
-                                "date": "2024-04-12",
-                                "description": "Description of stage 2",
-                                "comments": []
-                            }
-                        ]
-                    }
+                    "idProcess1", "idProcess2"
                 ]
             }
         },
@@ -113,8 +66,7 @@ class UpdateUser(BaseModel):
     postalCode: Optional[str] = None
     linkProfilePhoto: Optional[str] = None
     typeProfile: Optional[str] = None
-    applications: Optional[List[Dict[str, Any]]] = None
-    processes: Optional[List[Process]] = None
+    processes: Optional[List[str]] = None
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -133,38 +85,9 @@ class UpdateUser(BaseModel):
                 "state": "Anystate",
                 "postalCode": "12345",
                 "linkProfilePhoto": "http://example.com/profile.jpg",
-                "typeProfile": "Type A",
-                "applications": [
-                    {
-                        "vacancy": "Software Developer",
-                        "status": "Pending",
-                        "date_applied": "2024-04-11"
-                    },
-                    {
-                        "vacancy": "Data Scientist",
-                        "status": "Accepted",
-                        "date_applied": "2024-04-10"
-                    }
-                ],
+                "typeProfile": "user",
                 "processes": [
-                    {
-                        "date": "2024-04-11",
-                        "job": "Process Engineer",
-                        "skills": ["Skill 1", "Skill 2"],
-                        "description": "Description of the process",
-                        "stages": [
-                            {
-                                "title": "Stage 1",
-                                "date": "2024-04-11",
-                                "description": "Description of stage 1",
-                                "comments": []
-                            },
-                            {
-                                "title": "Stage 2",
-                                "date": "2024-04-11",
-                                "description": "Description of stage 1",
-                                "comments": []
-                            }]
-                    }]
+                    "idProcess1", "idProcess2"
+                ]
             }
         })
