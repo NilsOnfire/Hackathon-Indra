@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from routes.user_routes import user
 from routes.process_routes import process
+from routes.auth_routes import auth
 # from routes.stage_routes import stage
 from fastapi.middleware.cors import CORSMiddleware
 from decouple import config
@@ -27,3 +28,4 @@ def welcome():
 
 app.include_router(user)
 app.include_router(process)
+app.include_router(auth)

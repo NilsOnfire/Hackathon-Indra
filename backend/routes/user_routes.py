@@ -1,7 +1,8 @@
 
 from fastapi import APIRouter, HTTPException
-from queries.user_queries import get_all_users, create_user, get_one_user_email, get_one_user_id, delete_user, update_user
-from models.user_model import User, UpdateUser
+from queries.user_queries import get_all_users, create_user, get_one_user_email, get_one_user_id, delete_user, update_user, update_user_processes
+
+from models.user_model import User, UpdateUser, UpdateUserProcesses
 
 
 user = APIRouter()
@@ -50,3 +51,12 @@ async def remove_user(id: str):
     if response:
         return "User deleted successfully"
     raise HTTPException(404, "Could not find user id:{id}")
+
+
+@user.put('/api/users/process/{email}', response_model=UpdateUserProcesses, tags=['User'])
+async def put_user_process(email: str, userProcess: UpdateUserProcesses):
+    response = await update_user_processes(email, userProcess)
+    if response:
+        return response
+
+    raise HTTPException(404, "User with not found")
